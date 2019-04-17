@@ -22,60 +22,69 @@ namespace CSharp_Basics
             string Example = "This is example string";
         }
 
-        //        /// <summary>
-        //        ///  string is  first Reference Type you see (We will talk more about them later)
-        //        ///  which means he doesn't have to have value.
-        //        ///  use string.Empty;
-        //        ///  create new strings itsEmpty and make it empty
-        //        /// </summary>
-        //        [Test]
-        //        public void String_Initialization()
-        //        {
+        /// <summary>
+        ///  string is  first Reference Type you see (We will talk more about them later)
+        ///  which means he doesn't have to have value.
+        ///  use string.Empty;
+        ///  create new strings itsEmpty and make it empty
+        /// </summary>
+        [Test]
+        public void String_Initialization()
+        {
+            String itsEmpty = null;
+            Assert.That(itsEmpty, Is.Null);
 
-        //            Assert.That(itsEmpty, Is.Not.Null);
-        //        }
+            double x = 5;
+            double y = 6;
+            string errorMessage = "There was error in operation for parameters ";// + x + " " + y;
+            string errorMess2 = string.Format("{0} {1} {2}",errorMessage,x,y);
+            string errorMess3 = $"{errorMessage} {x} and {y}";
+            Console.WriteLine(errorMess2);
+        }
 
-        //        /// <summary>
-        //        /// + is not best way of adding string
-        //        ///  use string.Concat();
-        //        ///  put sentence together
-        //        /// </summary>
-        //        [Test]
-        //        public void Adding_String()
-        //        {
-        //            string first = "pancakes.";
-        //            string second = "I like";
-        //
-        //            Assert.AreEqual(restult, "I like pancakes.");
-        //        }
+        /// <summary>
+        /// + is not best way of adding string
+        ///  use string.Concat();
+        ///  put sentence together
+        /// </summary>
+        [Test]
+        public void Adding_String()
+        {
+            string first = "pancakes.";
+            string second = "I like";
 
-        //        /// <summary>
-        //        /// There is few more ways of cosntructing strings for example if you need add values of other variables inside you can do
-        //        /// https://docs.microsoft.com/en-us/dotnet/api/system.string.format?view=netframework-4.7.1#Starting
-        //        /// create string with both x and y insed
-        //        /// </summary>
-        //        [Test]
-        //        public void String_Format()
-        //        {
-        //            int x = 500;
-        //            int y = 453;
-        //            string result;
-        //
-        //            StringAssert.Contains(result, x.ToString());
-        //            StringAssert.Contains(result, y.ToString());
-        //        }
+            string result = string.Concat(second," ", first);
 
-        //        /// <summary>
-        //        /// From theString return word "thing".
-        //        /// hint use Substring() method
-        //        /// </summary>
-        //        [Test]
-        //        public void Substrings()
-        //        {
-        //            var theString =
-        //                "The interesting thing about London is that there are always stylish surprises around every corner.";
-        //
-        //            Assert.AreEqual(result,"thing");
-        //        }
+            Assert.AreEqual(result, "I like pancakes.");
+        }
+
+        /// <summary>
+        /// There is few more ways of cosntructing strings for example if you need add values of other variables inside you can do
+        /// https://docs.microsoft.com/en-us/dotnet/api/system.string.format?view=netframework-4.7.1#Starting
+        /// create string with both x and y insed
+        /// </summary>
+        [Test]
+        public void String_Format()
+        {
+            int x = 500;
+            int y = 453;
+            string resultxy = (x + y).ToString();
+
+            StringAssert.Contains((x+y).ToString(),resultxy);
+        }
+
+        /// <summary>
+        /// From theString return word "thing".
+        /// hint use Substring() method
+        /// </summary>
+        [Test]
+        public void Substrings()
+        {
+            var theString =
+                "The interesting thing about London is that there are always stylish surprises around every corner.";
+            string result = theString.Substring(16, 5);
+            Assert.AreEqual(result, "thing");
+            StringAssert.Contains("thing",theString);
+        }
     }
 }
